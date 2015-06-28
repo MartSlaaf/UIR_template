@@ -9,6 +9,9 @@
 % связаться можно по адресу mydebianblog@gmail.com
 %
 \ProvidesPackage{G7-32}[2003/07/07 v1.00 Titles for GOST 7.32-2001]
+\newcommand\appendixchapter[1]{\chapter{~~~~~~~~~~~~~~~~~~~~~~~}
+ { \usefont{\encodingdefault}{\familydefault}{b}{\shapedefault} {\large #1} }
+}
 
 %стандартные части
 \newcommand\Executors{%список исполнителей
@@ -20,7 +23,7 @@
 }
 \addto\captionsrussian{%содержание
  \def\contentsname{%
-  \CYRS\cyro\cyrd\cyre\cyrr\cyrzh\cyra\cyrn\cyri\cyre}%
+  \CYRS\CYRO\CYRD\CYRE\CYRR\CYRZH\CYRA\CYRN\CYRI\CYRE}%
 }
 \newcommand\NormRefs{%нормативные ссылки
  \chapter*{\CYRN\cyro\cyrr\cyrm\cyra\cyrt\cyri\cyrv\cyrn\cyrery\cyre~%
@@ -34,16 +37,16 @@
            \cyrs\cyro\cyrk\cyrr\cyra\cyrshch\cyre\cyrn\cyri\cyrya}%
 }
 \newcommand\Introduction{%введение
- \chapter{\CYRV\cyrv\cyre\cyrd\cyre\cyrn\cyri\cyre}%
+ \chapter{\CYRV\CYRV\CYRE\CYRD\CYRE\CYRN\CYRI\CYRE}%
 }
 \newcommand\Conclusion{%заключение
- \chapter{\CYRZ\cyra\cyrk\cyrl\cyryu\cyrch\cyre\cyrn\cyri\cyre}%
+ \chapter{\CYRZ\CYRA\CYRK\CYRL\CYRYU\CYRCH\CYRE\CYRN\CYRI\CYRE}%
 }
 \addto\captionsrussian{%список использованных источников
  \def\bibname{%
-  \CYRS\cyrp\cyri\cyrs\cyro\cyrk~
-  \cyri\cyrs\cyrp\cyro\cyrl\cyrsftsn\cyrz\cyro\cyrv\cyra\cyrn\cyrn\cyrery\cyrh~
-  \cyri\cyrs\cyrt\cyro\cyrch\cyrn\cyri\cyrk\cyro\cyrv}%
+  СПИСОК~
+  ИСПОЛЬЗОВАННЫХ~
+  ИСТОЧНИКОВ}%
 }
 
 %Элементы оформления титульной страницы
@@ -146,12 +149,63 @@
   ~ & ~ & ~ & $ \overset{\text{(подпись, дата)}}{\textit{~}} $ & ~ & $ \overset{\text{(уч. степень, уч. звание, ФИО руководителя)}}{\textit{~}} $
 \end{tabular}
   \vfill
-  
+   \pagebreak
   \Nir@Town\\
   \Nir@Year
 
  \end{centering}
  \linespread{\Gost@LineSpread}\normalsize
+
+}
+
+
+\newcommand\DipTitle[1]{
+ \thispagestyle{empty}
+ \begin{centering}
+  \linespread{1.1}
+  \usefont{\encodingdefault}{\familydefault}{b}{\shapedefault}
+  \footnotesize
+  МИНИСТЕРСТВО ОБРАЗОВАНИЯ И НАУКИ РОССИЙСКОЙ ФЕДЕРАЦИИ\\
+  \vspace{1em}
+  \small
+  ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ АВТОНОМНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ\\
+  ВЫСШЕГО ПРОФЕССИОНАЛЬНОГО ОБРАЗОВАНИЯ\\
+  НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ ЯДЕРНЫЙ УНИВЕРСИТЕТ «МИФИ»\\
+  \vspace{1em}
+  \footnotesize ФАКУЛЬТЕТ КИБЕРНЕТИКИ И ИНФОРМАЦИОННОЙ БЕЗОПАСНОСТИ\\
+  КАФЕДДРА ИНФОРМАТИКИ И ПРОЦЕССОВ УПРАВЛЕНИЯ (№ 17)\\
+  \vfill
+ \begin{flushright}
+ На правах рукописи \\
+ УДК ~~~~~~~~~~~~~~~~~~~~~\\
+ \end{flushright}
+  \vfill
+  \normalsize
+  \small
+Жаров Ярослав Максимович \\
+\normalsize
+  \vspace{1em}
+  #1
+  \vspace{1em}
+
+\small
+
+  \vfill
+  \vfill
+\begin{tabular}{ r c c c c c }
+  Студент группы & \Nir@StudentGroup & ~ & ~ & ~ & \Nir@Student \\ \cline{2-2} \cline{4-4} \cline{6-6}
+  ~ & $ \overset{\text{(номер группы)}}{\textit{~}} $ & ~ & $ \overset{\text{(подпись, дата)}}{\textit{~}} $  & ~ & $ \overset{\text{(ФИО  студента)}}{\textit{~}} $   \\
+  Руководитель & ~ & ~ & ~ & ~ & \Nir@ManagerPost \Nir@ManagerName \\ \cline{4-4} \cline{6-6}
+  ~ & ~ & ~ & $ \overset{\text{(подпись, дата)}}{\textit{~}} $ & ~ & $ \overset{\text{(уч. степень, уч. звание, ФИО руководителя)}}{\textit{~}} $
+\end{tabular}
+  \vfill
+   \pagebreak
+  \Nir@Town\\
+  \Nir@Year
+
+ \end{centering}
+ \linespread{\Gost@LineSpread}\normalsize
+
 }
 
 %Эти команды нужно вызвать для корректного определения титульной страницы
@@ -164,6 +218,7 @@
 \fontfamily{\familydefault}\fontseries{\seriesdefault}\fontshape{it}\selectfont #2 \fontencoding{\encodingdefault}\fontfamily{\familydefault}\fontseries{\seriesdefault}\fontshape{\shapedefault}\selectfont}}
 \newcommand\NirTown[1]{\renewcommand\Nir@Town{#1}}%%virens added: указываем город написания отчёта
 \newcommand\NirUdk[1]{\renewcommand\Nir@UdkName{#1}}%%virens added: для изменения УДК в тексте документа
-\newcommand\NirStudentGroup[1]{\renewcommand\Nir@StudentGroup{\fontencoding{\encodingdefault}\fontfamily{\familydefault}\fontseries{\seriesdefault}\fontshape{it}\selectfont #1 \fontencoding{\encodingdefault}\fontfamily{\familydefault}\fontseries{\seriesdefault}\fontshape{\shapedefault}\selectfont}}
+\newcommand\NirStudentGroup[1]{\renewcommand\Nir@StudentGroup{\fontencoding{\encodingdefault}\fontfamily{\familydefault}\fontseries{\seriesdefault}\fontshape{it}\selectfont #1
+\fontencoding{\encodingdefault}\fontfamily{\familydefault}\fontseries{\seriesdefault}\fontshape{\shapedefault}\selectfont}}
 \newcommand\NirStudent[1]{\renewcommand\Nir@Student{\fontencoding{\encodingdefault}\fontfamily{\familydefault}\fontseries{\seriesdefault}\fontshape{it}\selectfont #1 \fontencoding{\encodingdefault}\fontfamily{\familydefault}\fontseries{\seriesdefault}\fontshape{\shapedefault}\selectfont}}
 \newcommand\NirGosNo[1]{\renewcommand\Nir@No{#1}}%%virens added: номер госрегистрации
